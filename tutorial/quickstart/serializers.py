@@ -15,7 +15,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class RestaurantSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['name', 'number', 'location', 'lng', 'lat', 'likes']
+        fields = ['id', 'name', 'number', 'location', 'lng', 'lat', 'likes']
         
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -25,4 +25,4 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
 class MenuSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Menu
-        fields = ['name', 'price', 'date', 'restaurant', 'time']
+        fields = ['name', 'price', 'date', 'restaurant', 'time', 'rname']

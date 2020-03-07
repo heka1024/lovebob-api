@@ -28,7 +28,7 @@ for s in rows:
         cnt = cnt + 1
     else:
         cases[cnt] += [s]
-        
+
 if len(html.select(q)) > 1:
     for s in html.select(q)[1].select('table > tr'):
         cases[1] += [s]
@@ -38,20 +38,20 @@ menus = []
 for k, v in cases.items():
     for row in v:
         res_name, _, ms = row
-        for td in row:
-            for i, m in enumerate(ms):
-                if m.name == 'span':
-                    if m['class'][0] == 'price':
-                        name = list(ms)[i+1]
-                        price = int(m.text) * 100
-                        menus += [{
-                            'time': k,
-                            'restaurant': res_name.text,
-                            'name': name,
-                            'price': price
-                        }]
+        for i, m in enumerate(ms):
+            if m.name == 'span':
+                if m['class'][0] == 'price':
+                    name = list(ms)[i+1]
+                    price = int(m.text) * 100
+                    menus += [{
+                        'time': k,
+                        'restaurant': res_name.text,
+                        'name': name,
+                        'price': price
+                    }]
 
 table = ['b', 'l', 'd']
+s = set()
 for m in menus:
     r = Restaurant.objects.get(name = m['restaurant'])
     pnew = Menu(
@@ -59,7 +59,8 @@ for m in menus:
         price = m['price'],
         date = date,
         restaurant = r,
-        time = table[m['time']]
+        time = table[m['time']],
+        rname = r.name
     )
     print(pnew)
     pnew.save()
