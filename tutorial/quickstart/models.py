@@ -28,6 +28,7 @@ class Menu(models.Model):
     price = models.IntegerField(default = 0)
     date = models.DateField(null = True, blank = True)
     restaurant = models.ForeignKey(Restaurant, related_name = 'menus', on_delete = models.SET_NULL, null = True)
+    rname = models.CharField(max_length = 100, help_text = '레스토랑 이름')
     
     TIME = (
         ('b', '아침'),
