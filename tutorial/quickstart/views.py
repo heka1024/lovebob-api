@@ -11,6 +11,19 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all().order_by('time')
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        _id = self.request.query_params.get('id')
+        if _id == None:
+            queryset = Menu.objects.order_by('create_at')
+        else:
+            queryset = Menu.objects.filter(restaurant.id = _id).order_by('create_at')
+        
+        return queryset
+    
 class MenuViewSet(viewsets.ModelViewSet):
     queryset = Menu.objects.all().order_by('time')
     serializer_class = MenuSerializer
