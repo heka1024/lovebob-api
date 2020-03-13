@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 from quickstart.serializers import *
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -22,9 +22,9 @@ class CommentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         _id = self.request.query_params.get('id')
         if _id == None:
-            queryset = Menu.objects.order_by('create_at')
+            queryset = Comment.objects.order_by('created_at')
         else:
-            queryset = Menu.objects.filter(restaurant.id = _id).order_by('create_at')
+            queryset = Comment.objects.all().filter(restaurant__id = _id).order_by('created_at')
         
         return queryset
     
@@ -49,17 +49,7 @@ RestaurantDetail = RestaurantViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update'
-})
-    
-class CommentView(viewsets.ModelViewSet):
-    queryset = Comment.objects.all().order_by('created_at')
-    serializer_class = CommentSerializer
-    
-class CommentCreate(generics.CreateAPIView):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-    
-    
+})    
     
 @login_required
 @api_view(['GET', 'POST'])
@@ -67,18 +57,20 @@ def comment_new(request, no = 18):
     if request.method == "POST":
         author = request.user
         restaurant = Restaurant.objects.get(id = no)
-        text = request.data.get('text', '잘못된 입력입니다.')
+        text = request.data.get('text', '')
+        if text == '':
+          return Response({'result': 'fail to create'}, status = status.HTTP_400_BAD_REQUEST)
         pnew = Comment(
             author = author,
             restaurant = restaurant,
             text = text
         )
         pnew.save()
-        return Response('{data: good}')
+        return Response({'result': 'success'}, status = status.HTTP_201_CREATED)
     else:
         restaurant = Restaurant.objects.get(id = no)
         print(restaurant)
-        return Response('{data: login_required}')
+        return Response({'result': 'post required'})
     
 @login_required
 @api_view(['GET', 'POST'])
@@ -86,6 +78,6 @@ def comment_delete(request, pk):
     if request.method == "POST":
         want_to_delete = Comment.objects.get(pk = pk)
         want_to_delete.delete()
-        return Response('{data: success}')
+        return Response({'result': 'success'}, status = status.HTTP_202_ACCEPTED)
     else:
-        return Response('{data: fail}')
+        return Response({'result': 'post required'}, status = status.HTTP_400_BAD_REQUEST)
