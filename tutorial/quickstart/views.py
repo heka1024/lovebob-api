@@ -1,11 +1,15 @@
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, generics, status
+from django.contrib.auth.decorators import login_required
+
+from rest_framework import viewsets, generics, status, permissions
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
+
 from quickstart.serializers import *
 from .models import *
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
@@ -16,8 +20,10 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     
 class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all().order_by('time')
-    serializer_class = CommentSerializer
+    queryset = Comment.objects.all().order_by('created_at')
+    
+    def get_serializer_class(self):
+      return CommentSerializer
 
     def get_queryset(self):
         _id = self.request.query_params.get('id')
@@ -51,8 +57,9 @@ RestaurantDetail = RestaurantViewSet.as_view({
     'patch': 'partial_update'
 })    
     
-@login_required
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def comment_new(request, no = 18):
     if request.method == "POST":
         author = request.user
@@ -72,8 +79,9 @@ def comment_new(request, no = 18):
         print(restaurant)
         return Response({'result': 'post required'})
     
-@login_required
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def comment_delete(request, pk):
     if request.method == "POST":
         want_to_delete = Comment.objects.get(pk = pk)
@@ -81,3 +89,19 @@ def comment_delete(request, pk):
         return Response({'result': 'success'}, status = status.HTTP_202_ACCEPTED)
     else:
         return Response({'result': 'post required'}, status = status.HTTP_400_BAD_REQUEST)
+      
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def like(request, pk):
+    print('like is called')
+    user = request.user
+    print(user)
+    restaurant = Restaurant.objects.get(pk = pk)
+
+    if restaurant.likes.filter(username = user.username).exists():
+        restaurant.likes.remove(user)    
+        return Response({'result': 'success to remove like'}, status = status.HTTP_202_ACCEPTED)
+    else:
+        restaurant.likes.add(user)
+        return Response({'result': 'success to add like'}, status = status.HTTP_202_ACCEPTED)

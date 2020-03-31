@@ -14,10 +14,11 @@ router.register(r'restaurants', views.RestaurantViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path(r'comment_new/<int:no>/', views.comment_new, name = 'comment_new'),
     path(r'comment_delete/<int:pk>/', views.comment_delete, name = 'comment_delete'),
+    path(r'like/<int:pk>/', views.like, name = 'toggle-like'),
     re_path(r'restaurant/(?P<no>\d+)/$', views.RestaurantDetail, name='restaurant-detail'),
     url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^accounts/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
 ]

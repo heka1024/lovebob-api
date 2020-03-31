@@ -3,7 +3,7 @@ from django.urls import reverse
 import uuid
 from django.contrib.auth.models import User
 
-from datetime import datetime
+from django.utils import timezone
 
 class Restaurant(models.Model):
     name = models.CharField(max_length = 100, help_text = '식당의 이름')
@@ -52,7 +52,7 @@ class Comment(models.Model):
     author = models.ForeignKey(User, null =True, on_delete=models.SET_NULL)
     restaurant = models.ForeignKey(Restaurant, null =True, related_name = "comments", on_delete=models.SET_NULL)
     text = models.TextField()
-    created_at = models.DateTimeField(default = datetime.now())
+    created_at = models.DateTimeField(default = timezone.now())
     
     class Meta():
         ordering = ['-created_at']
