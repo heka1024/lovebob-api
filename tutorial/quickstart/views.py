@@ -79,6 +79,7 @@ def comment_new(request, no = 18):
         print(restaurant)
         return Response({'result': 'post required'})
     
+    
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([TokenAuthentication])
@@ -105,3 +106,20 @@ def like(request, pk):
     else:
         restaurant.likes.add(user)
         return Response({'result': 'success to add like'}, status = status.HTTP_202_ACCEPTED)
+      
+      
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def delete_user(request):
+    user = request.user
+    i = User.objects.get(username = user.username)
+    i.delete()
+    return Response({'result': 'success to remove user'}, status = status.HTTP_202_ACCEPTED)
+
+#     if restaurant.likes.filter(username = user.username).exists():
+#         restaurant.likes.remove(user)    
+#         return Response({'result': 'success to remove like'}, status = status.HTTP_202_ACCEPTED)
+#     else:
+#         restaurant.likes.add(user)
+#         return Response({'result': 'success to add like'}, status = status.HTTP_202_ACCEPTED)

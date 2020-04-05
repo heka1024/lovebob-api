@@ -49,8 +49,8 @@ class Menu(models.Model):
         return f'{self.name}, {self.price}, {self.date}, ({self.restaurant})'
     
 class Comment(models.Model):
-    author = models.ForeignKey(User, null =True, on_delete=models.SET_NULL)
-    restaurant = models.ForeignKey(Restaurant, null =True, related_name = "comments", on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, null =True, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, null =True, related_name = "comments", on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(default = timezone.now())
     
