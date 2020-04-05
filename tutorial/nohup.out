@@ -134,3 +134,143 @@ April 01, 2020 - 22:06:07
 Django version 2.2.6, using settings 'tutorial.settings'
 Starting development server at http://0:8000/
 Quit the server with CONTROL-C.
+[2020-04-04 06:40:40 +0000] [2982] [INFO] Starting gunicorn 20.0.4
+[2020-04-04 06:40:40 +0000] [2982] [INFO] Listening at: http://127.0.0.1:8000 (2982)
+[2020-04-04 06:40:40 +0000] [2982] [INFO] Using worker: sync
+[2020-04-04 06:40:40 +0000] [2985] [INFO] Booting worker with pid: 2985
+[2020-04-04 07:51:34 +0000] [4718] [INFO] Booting worker with pid: 4718
+[2020-04-04 07:51:34 +0000] [2982] [INFO] Handling signal: hup
+[2020-04-04 07:51:34 +0000] [2982] [INFO] Hang up: Master
+[2020-04-04 07:51:34 +0000] [4719] [INFO] Booting worker with pid: 4719
+[2020-04-04 16:51:35 +0900] [4718] [INFO] Worker exiting (pid: 4718)
+[2020-04-04 08:13:46 +0000] [2982] [INFO] Handling signal: term
+[2020-04-04 17:13:46 +0900] [4719] [INFO] Worker exiting (pid: 4719)
+[2020-04-04 08:13:46 +0000] [2982] [INFO] Shutting down: Master
+  File "manage.py", line 16
+    ) from exc
+         ^
+SyntaxError: invalid syntax
+[2020-04-04 10:56:44 +0000] [7838] [INFO] Starting gunicorn 20.0.4
+[2020-04-04 10:56:44 +0000] [7838] [INFO] Listening at: http://127.0.0.1:8000 (7838)
+[2020-04-04 10:56:44 +0000] [7838] [INFO] Using worker: sync
+[2020-04-04 10:56:44 +0000] [7841] [INFO] Booting worker with pid: 7841
+Not Found: /static/rest_framework/css/bootstrap.min.css
+Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+Not Found: /static/rest_framework/css/prettify.css
+Not Found: /static/rest_framework/css/default.css
+Not Found: /static/rest_framework/js/jquery-3.3.1.min.js
+Not Found: /static/rest_framework/js/ajax-form.js
+Not Found: /static/rest_framework/js/csrf.js
+Not Found: /static/rest_framework/js/bootstrap.min.js
+Not Found: /static/rest_framework/js/prettify-min.js
+Not Found: /static/rest_framework/js/default.js
+Not Found: /
+/home/heka1024/.local/lib/python3.6/site-packages/rest_framework/pagination.py:198: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'quickstart.models.Restaurant'> QuerySet.
+  paginator = self.django_paginator_class(queryset, page_size)
+Bad Request: /api/rest-auth/login/
+Bad Request: /api/rest-auth/login/
+Bad Request: /api/rest-auth/login/
+Bad Request: /api/rest-auth/login/
+Bad Request: /api/rest-auth/login/
+Bad Request: /api/rest-auth/login/
+Bad Request: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Bad Request: /api/rest-auth/registration/
+Bad Request: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/registration/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/logout/
+Forbidden: /api/rest-auth/logout/
+Forbidden: /api/rest-auth/logout/
+Forbidden: /api/rest-auth/login/
+Not Found: /api/users
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/login/
+Forbidden: /api/rest-auth/registration/
