@@ -14,7 +14,7 @@ chardet==3.0.4
 colorama==0.3.9
 cryptography==2.1.4
 defusedxml==0.4.1
-Django==1.11.28
+Django==1.11.29
 django-allauth==0.41.0
 django-rest-auth==0.9.5
 djangorestframework==3.9.4
